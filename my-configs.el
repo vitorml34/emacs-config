@@ -1,4 +1,5 @@
-
+;; After adding it to your load path, use the line below
+;; (load "my-emacs-configs/my-configs") 
 
 ;; Setting theme
 (custom-set-variables
@@ -41,3 +42,6 @@
 ;; When splitting window automatically go to new one
 (global-set-key "\C-x2" (lambda () (interactive)(split-window-vertically) (other-window 1)))
 (global-set-key "\C-x3" (lambda () (interactive)(split-window-horizontally) (other-window 1)))
+
+;; Automatically moves the focus to buffer list when it's opened
+(global-set-key "\C-x\C-b" (lambda () (interactive)(list-buffers nil) (other-window 1)))
