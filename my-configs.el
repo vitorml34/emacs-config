@@ -45,3 +45,20 @@
 
 ;; Automatically moves the focus to buffer list when it's opened
 (global-set-key "\C-x\C-b" (lambda () (interactive)(list-buffers nil) (other-window 1)))
+
+
+(defun increment-number-at-point ()
+  (interactive)
+  (skip-chars-backward "0-9")
+  (or (looking-at "[0-9]+")
+      (error "No number at point"))
+  (replace-match (number-to-string (1+ (string-to-number (match-string 0))))))
+
+(global-set-key (kbd "C-c +") 'increment-number-at-point)
+
+(defun create-tags (dir-name)
+    "Create tags file."
+    (interactive "DDirectory: ")
+    (shell-command
+     (format "%s -f TAGS -e -R %s" path-to-ctags (directory-file-name dir-name)))
+  )
